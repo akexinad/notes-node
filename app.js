@@ -1,10 +1,11 @@
-const validator = require('validator');
+const ch = require('chalk');
 const getNotes = require('./notes.js');
 
 const msg = getNotes();
 console.log(msg);
 
-console.log(validator.isEmail('andrew@example.com'));
-console.log(validator.isEmail('example.com'));
+console.log(ch.blue('Success'));
 
-console.log(validator.isURL('https:/mead.io'));
+console.log(ch.red.bgBlue.inverse.dim('Error!'));
+
+console.log("hello");

@@ -26,6 +26,22 @@ yargs.command({
   }
 });
 
+// Create read command
+yargs.command({
+  command: 'read',
+  describe: 'Read selected note',
+  builder: {
+    title: {
+      describe: 'Note title',
+      demandOption: true,
+      type: 'string',
+    }
+  },
+  handler(argv) {
+    notes.readNote(argv.title)
+  }
+})
+
 // Create remove command
 yargs.command({
   command: 'remove',
@@ -39,15 +55,6 @@ yargs.command({
   },
   handler(argv) {
     notes.removeNote(argv.title)
-  }
-});
-
-// Create read command
-yargs.command({
-  command: 'read',
-  describe: 'Read the note.',
-  handler() {
-    console.log('Here is the note...');
   }
 });
 

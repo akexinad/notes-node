@@ -18,11 +18,11 @@ const tasks = {
   }],
 
   // NOTE: so the object method, getTasksToDo() does the 'this' BINDING for whatever arrow function you put inside this object method.
+  // NOTE: REMEMBER, instead of the normal getTasksToDo: function () syntax, we can use the ES6 syntax below:
 
   getTasksToDo() {
     // console.log(this.tasks);
-    const completedTasks = this.tasks.filter( task => task.completed === true );
-    console.log(completedTasks[0].text);
+    return this.tasks.filter( task => task.completed === false );
   }
 
 }

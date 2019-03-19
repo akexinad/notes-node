@@ -5,6 +5,16 @@ const getNotes = () => {
   return "Your notes...";
 };
 
+const loadNotes = () => {
+  try {
+    const dataBuffer = fs.readFileSync('notes.json');
+    const dataJSON = dataBuffer.toString();
+    return JSON.parse(dataJSON);
+  } catch (err) {
+    return [];
+  }
+};
+
 const addNote = (title, body) => {
   const notes = loadNotes();
   const duplicateNotes = notes.filter( (note) => note.title === title );
@@ -36,27 +46,18 @@ const removeNote = (title) => {
   }
 };
 
+const listNotes = () => {
+  console.log(chalk.inverse('Here are all your notes...'));
+  const notes = loadNotes();
+  notes.forEach( note => {
+    console.log(chalk.bgBlue.white(note.title + ':') + chalk.blue(note.body));
+  })
+
 const saveNotes = (notes) => {
   const dataJSON = JSON.stringify(notes);
   fs.writeFileSync('notes.json', dataJSON);
 };
 
-const loadNotes = () => {
-  try {
-    const dataBuffer = fs.readFileSync('notes.json');
-    const dataJSON = dataBuffer.toString();
-    return JSON.parse(dataJSON);
-  } catch (err) {
-    return [];
-  }
-};
-
-const listNotes = () => {
-  console.log(chalk.bgGreen('Here are all your notes...'));
-  const notes = loadNotes()
-  notes.forEach( note => {
-    console.log(chalk.bgBlue.white(note.title + ':') + chalk.blue(note.body));
-  })
 };
 
 module.exports = {

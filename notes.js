@@ -34,14 +34,14 @@ const addNote = (title, body) => {
 
 const readNote = (title) => {
   const notes = loadNotes();
-  const noteToRead = notes.find( (note) => note.title === title );
+  const note = notes.find( (note) => note.title === title );
 
-  if (noteToRead) {
+  if (note) {
     console.log(chalk.bgGreen('Here is your note...'));
-    console.log(chalk.inverse(noteToRead.title));
-    console.log(noteToRead.body);
+    console.log(chalk.inverse(note.title));
+    console.log(note.body);
   } else {
-    console.log(chalk.bgRed('Cannot find note'));
+    console.log(chalk.red.inverse('| ERROR: Cannot find note |'));
   }
 
 }
